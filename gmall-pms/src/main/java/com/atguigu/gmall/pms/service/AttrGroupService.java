@@ -23,5 +23,7 @@ public interface AttrGroupService extends IService<AttrGroupEntity> {
     PageVo queryGroupByPage(QueryCondition condition, Long catId);
 
     GroupVo queryGroupWithAttrsByGid(Long gid);
+
+    List<GroupVo> queryGroupWithAttrsByCid(Long cid);
 }
 
