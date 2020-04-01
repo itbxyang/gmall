@@ -15,6 +15,9 @@ public interface GmallPmsApi {
     @PostMapping("pms/spuinfo/page")
     public Resp<List<SpuInfoEntity>> querySpusByPage(@RequestBody QueryCondition queryCondition);
 
+    @GetMapping("pms/spuinfo/info/{id}")
+    public Resp<SpuInfoEntity> querySpuById(@PathVariable("id") Long id);
+
     @GetMapping("pms/skuinfo/{spuId}")
     public Resp<List<SkuInfoEntity>> querySkusBySpuId(@PathVariable("spuId")Long spuId);
 
