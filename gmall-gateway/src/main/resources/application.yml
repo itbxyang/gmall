@@ -35,3 +35,7 @@ spring:
         server-addr: 127.0.0.1:8848
   application:
     name: gmall-gateway
+gmall:
+  jwt:
+    pubKeyPath: D:\JetBrains\IdeaProjects\Microservices\gmall_project\rsa\rsa.pub # 公钥地址
+    cookieName: GMALL_TOKEN
