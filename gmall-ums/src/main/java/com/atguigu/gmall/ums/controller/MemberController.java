@@ -39,9 +39,16 @@ public class MemberController {
         return Resp.ok(memberEntity);
     }
 
+
     @PostMapping("register")
-    public Resp<Object> register(MemberEntity memberEntity, @RequestParam("code")String code){
-        this.memberService.register(memberEntity, code);
+    public Resp<Boolean> register(MemberEntity memberEntity, @RequestParam("code")String code){
+        Boolean flag = this.memberService.register(memberEntity, code);
+        return Resp.ok(flag);
+    }
+
+    @PostMapping("code")
+    public Resp<Object> sendVerifyCode(@RequestParam("mobile")String mobile){
+        this.memberService.sendVerifyCode(mobile);
         return Resp.ok(null);
     }
 

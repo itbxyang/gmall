@@ -1,0 +1,17 @@
+server:
+  port: 8093
+spring:
+  application:
+    name: shortMessage-service
+  rabbitmq:
+    host: 192.168.30.110
+    port: 5672
+    virtual-host: /gmall
+    username: gmall
+    password: gmall
+gmall:
+  sms:
+    accessKeyId: LTAI4ForSYJV8xQzXHiowxdj # accessKeyId
+    accessKeySecret: yHb4fEeddoLpNgvL6Au5PRTUvREj4R # AccessKeySecret
+    signName: 乐优商城 # 签名名称
+    verifyCodeTemplate: SMS_182551074 # 模板名称

@@ -19,8 +19,10 @@ public interface MemberService extends IService<MemberEntity> {
 
     Boolean checkData(String data, Integer type);
 
-    void register(MemberEntity memberEntity, String code);
+    Boolean register(MemberEntity memberEntity, String code);
 
     MemberEntity queryUser(String username, String password);
+
+    void sendVerifyCode(String mobile);
 }
 

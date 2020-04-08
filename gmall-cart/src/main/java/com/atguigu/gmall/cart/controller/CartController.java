@@ -3,7 +3,7 @@ package com.atguigu.gmall.cart.controller;
 import com.atguigu.core.bean.Resp;
 import com.atguigu.gmall.cart.interceptors.LoginInterceptor;
 import com.atguigu.gmall.cart.pojo.Cart;
-import com.atguigu.gmall.cart.pojo.UserInfo;
+import com.atguigu.core.bean.UserInfo;
 import com.atguigu.gmall.cart.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +33,12 @@ public class CartController {
     public Resp<Object> updateCart(@RequestBody Cart cart){
         this.cartService.updateCart(cart);
         return Resp.ok(null);
+    }
+
+    @GetMapping("{userId}")
+    public Resp<List<Cart>> queryCheckedCartsByUserId(@PathVariable("userId")Long userId){
+        List<Cart> carts = this.cartService.queryCheckedCartsByUserId(userId);
+        return Resp.ok(carts);
     }
 
     @PostMapping("delete/{skuId}")
