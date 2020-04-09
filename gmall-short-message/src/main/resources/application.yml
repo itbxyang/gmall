@@ -13,5 +13,5 @@ gmall:
   sms:
     accessKeyId:  # accessKeyId
     accessKeySecret:  # AccessKeySecret
-    signName:  # 签名名称
+    signName: # 签名名称
     verifyCodeTemplate:  # 模板名称
