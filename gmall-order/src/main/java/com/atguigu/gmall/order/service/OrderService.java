@@ -157,7 +157,7 @@ public class OrderService {
         return orderConfirmVO;
     }
 
-    public void submit(OrderSubmitVO submitVO) {
+    public OrderEntity submit(OrderSubmitVO submitVO) {
 
         UserInfo userInfo = LoginInterceptor.getUserInfo();
         // 获取orderToken
@@ -206,15 +206,17 @@ public class OrderService {
 //        int i = 1/0;
 
         // 4.下单（创建订单及订单详情）
+        Resp<OrderEntity> orderEntityResp = null;
         try {
             submitVO.setUserId(userInfo.getId());
-            Resp<OrderEntity> orderEntityResp = this.omsClient.saveOrder(submitVO);
+            orderEntityResp = this.omsClient.saveOrder(submitVO);
         } catch (Exception e) {
             e.printStackTrace();
             // 发送消息给wms，解锁对应的库存
             this.amqpTemplate.convertAndSend("GMALL-ORDER-EXCHANGE", "stock.unlock", orderToken);
             throw new OrderException("服务器错误，创建订单失败！");
         }
+
 
         // 5.删除购物车（发送消息删除购物车）
         Map<String, Object> map = new HashMap<>();
@@ -223,6 +225,10 @@ public class OrderService {
         map.put("skuIds", skuIds);
         this.amqpTemplate.convertAndSend("GMALL-ORDER-EXCHANGE", "cart.delete", map);
 
+        if (orderEntityResp != null) {
+            return orderEntityResp.getData();
+        }
+        return null;
     }
 
 
