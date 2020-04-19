@@ -68,7 +68,7 @@ public class IndexService {
         Resp<List<CategoryVO>> listResp = this.gmallPmsClient.querySubCategories(pid);
         List<CategoryVO> categoryVOS = listResp.getData();
         // 4.查询完成后放入缓存
-//        this.redisTemplate.opsForValue().set(KEY_PREFIX + pid, JSON.toJSONString(categoryVOS), 7 + new Random().nextInt(5), TimeUnit.DAYS);
+        // this.redisTemplate.opsForValue().set(KEY_PREFIX + pid, JSON.toJSONString(categoryVOS), 7 + new Random().nextInt(5), TimeUnit.DAYS);
 
 //        lock.unlock();
 
